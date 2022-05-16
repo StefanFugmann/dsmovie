@@ -29,15 +29,13 @@ function Listing() {
             });
     }, [pageNumber]);
 
-    axios.get(`${BASE_URL}/movies?size=12&page=1`)
-        .then(response => {
-            const data = response.data as MoviePage;
-            setPageNumber(data.number);
-        });
+    const handlePageChange = (newPageNumeber : number) => {
+        setPageNumber(newPageNumeber)
+    }
 
     return (
         <>
-            <Pagination />
+            <Pagination page={page} onChange={handlePageChange}/>
             <div className="container">
                 <div className="row">
                     {page.content.map(movie => (
